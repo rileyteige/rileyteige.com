@@ -1,0 +1,3 @@
+[submodule "php/templates"]
+	path = php/templates
+	url = git://github.com/rileyteige/templates.git
