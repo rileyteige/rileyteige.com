@@ -2,15 +2,16 @@
 
 require_once 'php/setup.php';
 
-register_all();
-
 $app = new \Slim\Slim();
 
+\templates\resource('HelloWorld', 'Hello, world!');
+
 $app->get('/', function() {
-	$page = load_templated_page(SITE_HOME_PAGE);
+	$page = load_templated_page('index.html');
 
 	echo $page;
 });
+
 
 $app->get('/:page', function($page) {
 	if (strpos($page, '.html') == FALSE) {
