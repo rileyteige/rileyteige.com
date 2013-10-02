@@ -4,8 +4,6 @@ require_once 'php/setup.php';
 
 $app = new \Slim\Slim();
 
-\templates\resource('HelloWorld', 'Hello, world!');
-
 $app->get('/', function() {
 	$page = load_templated_page('index.html');
 

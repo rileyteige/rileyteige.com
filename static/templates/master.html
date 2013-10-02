@@ -5,6 +5,22 @@
 		{{ Css('style.css') }}
 	</head>
 	<body>
-		{{CONTENT}}
+		<header id="header">
+			<div id="pagetitle">
+				{{ PageHeaderTitle }}
+			</div>
+			<nav>
+				<ul>
+					<li>{{ LinkLocalPage('index.html', 'Home') }}</li>
+					<li>{{ LinkLocalPage('resume.html', 'Developer') }}</li>
+					<li>{{ LinkLocalPage('contact.html', 'Contact') }}</li>
+				</ul>
+			</nav>
+		</header>
+		<section id="main">
+			{{CONTENT}}
+		</section>
+		<footer id="footer">
+		</footer>
 	</body>
 </html>

@@ -1,0 +1,29 @@
+.DefaultFont {
+	color: @defaultFontColor;
+	font-family: @defaultFontFamily;
+	font-size: @defaultFontSize;
+}
+
+.RelativeFontSize(@mult: 1.0) {
+	font-size: @defaultFontSize * @mult;
+}
+
+.MainSidePadding() {
+	padding: 0 (100 - @defaultContentWidth) / 2;
+}
+
+.MainSideMargin() {
+	margin: 0 (100 - @defaultContentWidth) / 2;
+}
+
+.Left {
+	float: left;
+}
+
+.Right {
+	float: right;
+}
+
+.Clear {
+	clear: both;
+}

@@ -1,6 +1,54 @@
 @import '_config.less';
+@import '_mixins.less';
 
 body {
 	background: @defaultBackground;
-	color: @defaultFontColor;
+	.DefaultFont;
+}
+
+header#header {
+	display: table;
+	
+	@titleFontSize: @defaultFontSize * @headerTitleFontMagnitude;
+	@headerLineHeight: @titleFontSize * 1.1;
+	
+	#pagetitle {
+		.RelativeFontSize(@headerTitleFontMagnitude);
+		display: table-cell;
+		vertical-align: center;
+		line-height: @headerLineHeight;
+	}
+	
+	nav {
+		display: table-cell;
+		ul {
+			list-style-type: none;
+			li {
+				display: inline;
+				margin: 0 12px;
+				line-height: @headerLineHeight;
+				
+				a {
+					color: @headerLinkFontColor;
+					text-decoration: none;
+					
+					&:hover {
+						text-shadow: 0 0 2px @headerLinkFontColor;
+					}
+				}
+			}
+		}
+	}
+}
+
+section#main, header#header {
+	.MainSideMargin();
+}
+
+section#main {
+	.Clear;
+}
+
+footer#footer {
+	.MainSidePadding();
 }
