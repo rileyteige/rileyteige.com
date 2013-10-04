@@ -11,6 +11,7 @@ header#header {
 	
 	@titleFontSize: @defaultFontSize * @headerTitleFontMagnitude;
 	@headerLineHeight: @titleFontSize * 1.1;
+	color: @headerFontColor;
 	
 	#pagetitle {
 		.RelativeFontSize(@headerTitleFontMagnitude);
@@ -47,6 +48,9 @@ section#main, header#header {
 
 section#main {
 	.Clear;
+	min-height: @contentMinHeight;
+	background-color: @headerFontColor;
+	padding: @contentInset;
 }
 
 footer#footer {

@@ -5,7 +5,7 @@
 
 /* Default Font */
 @defaultFontFamily: 'Open Sans', sans-serif;
-@defaultFontColor: #97AD03;
+@defaultFontColor: #000000;
 @defaultFontSize: 1.0em;
 
 /* Default Layout Properties */
@@ -13,4 +13,9 @@
 
 /* Header */
 @headerTitleFontMagnitude: 1.5;
-@headerLinkFontColor: lighten(@defaultBackground, 80%);
+@headerFontColor: lighten(@defaultBackground, 80%);
+@headerLinkFontColor: @headerFontColor;
+
+/* Main Content */
+@contentMinHeight: 32.0em;
+@contentInset: 1.0em;
