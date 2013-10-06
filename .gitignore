@@ -219,3 +219,10 @@ pip-log.txt
 #############
 
 *.css
+
+#############
+## SQLite & DB Credentials
+#############
+
+*.db
+*/sqlcreds.php

@@ -10,6 +10,17 @@ $app->get('/', function() {
 	echo $page;
 });
 
+$app->get('/blog/:blogId', function($blogId) {
+	$page = load_templated_page('blog.html');
+	
+	echo load_blog_post($blogId);
+	
+	if ($blog != null) {
+		apply_template_model($blog, $page);
+	}
+	
+	echo $page;
+});
 
 $app->get('/:page', function($page) {
 	if (strpos($page, '.html') == FALSE) {
@@ -19,6 +30,27 @@ $app->get('/:page', function($page) {
 	$html = load_templated_page($page);
 	
 	echo $html;
+});
+
+$app->post('/blog', function() {
+	$body = http_get_request_body();
+	if ($body != null) {
+		$root = json_decode($body);
+		switch($root->type) {
+		
+			/* CREATE A BLOG */
+			case BLOG: {
+				$inBlog = $root->content;
+				if ($inBlog != null) {
+					$blogId = create_blog_post($inBlog->title, $inBlog->author, $inBlog->publishDate, $inBlog->imageUrl, $inBlog->contentPath);
+					if ($blogId > 0) {
+						echo "Success! New id is $blogId";
+					}
+				}
+			} break;
+		
+		}
+	}
 });
 
 $app->run();

@@ -3,10 +3,6 @@
 $helpers = [
 	'LinkLocalPage' => function($doc, $text) {
 		return "<a href=\"$doc\">$text</a>";
-	},
-	
-	'LoadBlogPost' => function($entryName) {
-		return load_markdown($entryName);
 	}
 ];
 
