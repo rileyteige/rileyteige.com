@@ -2,7 +2,9 @@
 
 require_once 'Slim/Slim/Slim.php';
 require_once 'templates/templates/setup.php';
+require_once 'markdown/Michelf/Markdown.php';
 
+require_once 'blog.php';
 require_once 'helpers.php';
 require_once 'resources.php';
 
