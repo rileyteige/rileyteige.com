@@ -13,10 +13,10 @@ $app->get('/', function() {
 $app->get('/blog/:blogId', function($blogId) {
 	$page = load_templated_page('blog.html');
 	
-	echo load_blog_post($blogId);
+	$blog = load_blog_post($blogId);
 	
 	if ($blog != null) {
-		apply_template_model($blog, $page);
+		$page = templates\apply_model($blog, $page);
 	}
 	
 	echo $page;

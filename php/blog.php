@@ -31,8 +31,9 @@ function load_blog_post($blogId) {
 		return null;
 	}
 	
+	$blog->content = load_markdown(BLOG_ENTRY_ROOT.'/'.$blog->contentPath);
 	
-	return load_markdown(BLOG_ENTRY_ROOT.'/'.$blog->contentPath);
+	return $blog;
 }
 
 ?>
