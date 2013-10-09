@@ -1,0 +1,70 @@
+@import '_config.less';
+@import '_mixins.less';
+
+@imgContentSeparator: 3 * @contentInset;
+
+.blogEntryImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	@imgHeight: 500px;
+	min-height: @imgHeight;
+	max-height: @imgHeight;
+	overflow: hidden;
+
+	margin-bottom: -@imgContentSeparator * 3;
+
+	img {
+		width: 100%;
+		background-position: center;
+		margin-top: -100px;
+	}
+
+	&:after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		content: "";
+
+		@db: @headerFontColor;
+		@top: rgba(red(@db), green(@db), blue(@db), 0);
+		@bot: rgba(red(@db), green(@db), blue(@db), 1);
+
+		background: -moz-linear-gradient(top, @top 0%, @bot 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@top), color-stop(100%,@bot));
+		background: -webkit-linear-gradient(top, @top 0%,@bot 100%);
+		background: -o-linear-gradient(top, @top 0%, @bot 100%);
+		background: -ms-linear-gradient(top, @top 0%, @bot 100%);
+		background: linear-gradient(to bottom, @top 0%, @bot 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='@headerFontColor',GradientType=0 );
+	}
+}
+
+.blog {
+	position: relative;
+	margin-top: 350px;
+	z-index: 2;
+	.blogTitle {
+		padding: 0;
+		margin: 0;
+		-webkit-text-stroke: 0.8px;
+		.RelativeFontSize(2.5);
+	}
+
+	.publishInfo {
+		.RelativeFontSize(0.6);
+		font-style: italic;
+	}
+
+	#blogContent {
+		margin: @imgContentSeparator 0;
+	}
+}
+
+#blogComments {
+	min-height: 200px;
+}

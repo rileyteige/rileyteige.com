@@ -8,7 +8,12 @@ function load_markdown($filename) {
 }
 
 function load_blog_metadata($blogId) {
-	return R::load(BLOG, $blogId);
+	$blog = R::load(BLOG, $blogId);
+
+	$publishDate = DateTime::createFromFormat('m/d/Y', $blog->publishDate);
+	$blog->publishDate = $publishDate->format('F d, Y');
+
+	return $blog;
 }
 
 function create_blog_post($title, $author, $publishDate, $imgUrl, $contentPath) {

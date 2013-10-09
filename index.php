@@ -32,6 +32,20 @@ $app->get('/:page', function($page) {
 	echo $html;
 });
 
+$app->post('/blog/:blogId/comments', function($blogId) {
+	$body = http_get_request_body();
+	if ($body == null) {
+		echo json_encode(array("error" => "Bad HTTP Request body"));
+		return;
+	}
+
+	$json = json_decode($body);
+
+	$name = $json->name;
+
+	echo json_encode(array("data" => "Got comment for blog with id $blogId written with body = $body, name = $name" ));
+});
+
 $app->post('/blog', function() {
 	$body = http_get_request_body();
 	if ($body != null) {

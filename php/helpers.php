@@ -6,7 +6,11 @@ $helpers = [
 	},
 	
 	'Css' => function($filepath) {
-		return '<link rel="stylesheet" type="text/css" href="/rileyteige.com/css/'.$filepath.'">';
+		return '<link rel="stylesheet" type="text/css" href="/css/'.$filepath.'">';
+	},
+
+	'Script' => function($filepath) {
+		return '<script type="text/javascript" src="/js/'.$filepath.'"></script>';
 	}
 ];
 

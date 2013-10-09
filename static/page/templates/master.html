@@ -3,6 +3,8 @@
 		<title>Main Template</title>
 		
 		{{ Css('style.css') }}
+
+		{{ Script('jquery-2.0.3.min.js')}}
 	</head>
 	<body>
 		<header id="header">
@@ -11,9 +13,9 @@
 			</div>
 			<nav>
 				<ul>
-					<li>{{ LinkLocalPage('index.html', 'Home') }}</li>
-					<li>{{ LinkLocalPage('resume.html', 'Developer') }}</li>
-					<li>{{ LinkLocalPage('bloglist.html', 'Blog') }}</li>
+					<li>{{ LinkLocalPage('/index.html', 'Home') }}</li>
+					<li>{{ LinkLocalPage('/resume.html', 'Developer') }}</li>
+					<li>{{ LinkLocalPage('/bloglist.html', 'Blog') }}</li>
 				</ul>
 			</nav>
 		</header>
