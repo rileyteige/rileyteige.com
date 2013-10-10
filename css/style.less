@@ -1,35 +1,89 @@
 @import '_config.less';
 @import '_mixins.less';
 
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
 body {
 	background: @defaultBackground;
 	.DefaultFont;
 }
 
+div#mainImageContainer {
+	@imgHeight: 350px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	height: auto;
+	max-height: @imgHeight;
+	overflow: hidden;
+
+	z-index: -1;
+
+	img {
+		width: 100%;
+		margin-top: -100px;
+	}
+
+	&:after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		content: "";
+
+		@db: @defaultBackground;
+		@top: rgba(red(@db), green(@db), blue(@db), 0);
+		@mid: rgba(red(@db), green(@db), blue(@db), 0.1);
+		@bot: rgba(red(@db), green(@db), blue(@db), 1);
+
+		/*background: -moz-linear-gradient(top, @top 0%, @bot 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@top), color-stop(100%,@bot));
+		background: -webkit-linear-gradient(top, @top 0%,@bot 100%);
+		background: -o-linear-gradient(top, @top 0%, @bot 100%);
+		background: -ms-linear-gradient(top, @top 0%, @bot 100%);
+		background: linear-gradient(to bottom, @top 0%, @bot 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='@defaultBackground',GradientType=0 );*/
+		background: -moz-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
+		background: -webkit-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
+		background: -ms-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
+	}
+}
+
 header#header {
+	margin: 0 auto;
+
 	display: table;
 	
 	@titleFontSize: @defaultFontSize * @headerTitleFontMagnitude;
 	@headerLineHeight: @titleFontSize * 1.1;
 	color: @headerFontColor;
+	background-color: @headerBackgroundColor;
 	
-	#pagetitle {
-		.RelativeFontSize(@headerTitleFontMagnitude);
-		display: table-cell;
-		vertical-align: center;
-		line-height: @headerLineHeight;
-	}
+	@radius: 15px;
+	border-radius: 0 0 @radius @radius;
+
+	padding: 6px 16px;
 	
 	nav {
 		display: table-cell;
 		ul {
+			margin: 0;
+			padding: 0;
 			list-style-type: none;
 			li {
 				display: inline;
-				margin: 0 12px;
 				line-height: @headerLineHeight;
+				float: left;
 				
 				a {
+					padding: 0 12px;
 					color: @headerLinkFontColor;
 					text-decoration: none;
 					
@@ -42,16 +96,14 @@ header#header {
 	}
 }
 
-section#main, header#header {
-	.MainSideMargin();
-}
-
 section#main {
 	.Clear;
+	.MainSideMargin();
 	position: relative;
 	min-height: @contentMinHeight;
-	background-color: @headerFontColor;
+	min-width: 500px;
 	padding: @contentInset;
+	padding-top: 250px;
 }
 
 footer#footer {

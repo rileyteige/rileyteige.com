@@ -5,12 +5,13 @@
 		{{ Css('style.css') }}
 
 		{{ Script('jquery-2.0.3.min.js')}}
+		{{ Script('start.js') }}
 	</head>
 	<body>
+		<div id="mainImageContainer">
+			<img src="{{ MainImageUrl() }}"></img>
+		</div>
 		<header id="header">
-			<div id="pagetitle">
-				{{ PageHeaderTitle }}
-			</div>
 			<nav>
 				<ul>
 					<li>{{ LinkLocalPage('/index.html', 'Home') }}</li>

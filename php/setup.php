@@ -5,8 +5,8 @@ require_once 'Slim/Slim/Slim.php';
 require_once 'redbean/rb.php';
 require_once 'templates/templates/setup.php';
 
-require_once 'blog.php';
 require_once 'globals.php';
+require_once 'blog.php';
 require_once 'helpers.php';
 require_once 'sqlcreds.php';
 require_once 'resources.php';

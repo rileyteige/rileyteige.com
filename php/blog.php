@@ -38,6 +38,8 @@ function load_blog_post($blogId) {
 	
 	$blog->content = load_markdown(BLOG_ENTRY_ROOT.'/'.$blog->contentPath);
 	
+	set_global(MAIN_IMAGE_URL, $blog->imageUrl);
+
 	return $blog;
 }
 

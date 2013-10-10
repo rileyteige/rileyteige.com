@@ -11,6 +11,10 @@ $helpers = [
 
 	'Script' => function($filepath) {
 		return '<script type="text/javascript" src="/js/'.$filepath.'"></script>';
+	},
+
+	'MainImageUrl' => function() {
+		return get_global(MAIN_IMAGE_URL);
 	}
 ];
 

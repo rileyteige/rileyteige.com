@@ -8,8 +8,10 @@
 	top: 0;
 	left: 0;
 	right: 0;
+
 	@imgHeight: 500px;
-	min-height: @imgHeight;
+
+	height: auto;
 	max-height: @imgHeight;
 	overflow: hidden;
 
@@ -46,12 +48,9 @@
 
 .blog {
 	position: relative;
-	margin-top: 350px;
-	z-index: 2;
 	.blogTitle {
 		padding: 0;
 		margin: 0;
-		-webkit-text-stroke: 0.8px;
 		.RelativeFontSize(2.5);
 	}
 
@@ -67,4 +66,12 @@
 
 #blogComments {
 	min-height: 200px;
+
+	input.blogInput {
+		width: 25%;
+	}
+
+	textarea.blogInput {
+		width: 50%;
+	}
 }

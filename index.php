@@ -11,9 +11,9 @@ $app->get('/', function() {
 });
 
 $app->get('/blog/:blogId', function($blogId) {
-	$page = load_templated_page('blog.html');
-	
 	$blog = load_blog_post($blogId);
+	
+	$page = load_templated_page('blog.html');
 	
 	if ($blog != null) {
 		$page = templates\apply_model($blog, $page);
@@ -42,8 +42,9 @@ $app->post('/blog/:blogId/comments', function($blogId) {
 	$json = json_decode($body);
 
 	$name = $json->name;
+	$commentBody = $json->body;
 
-	echo json_encode(array("data" => "Got comment for blog with id $blogId written with body = $body, name = $name" ));
+	echo json_encode(array("data" => "Got comment from '$name' of '$commentBody' for blog with id $blogId" ));
 });
 
 $app->post('/blog', function() {

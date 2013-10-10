@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 /* Background */
-@defaultBackground: #0E0A1A;
+@defaultBackground: lighten(@headerBackgroundColor, 80%);
 
 /* Default Font */
 @defaultFontFamily: 'Open Sans', sans-serif;
@@ -9,12 +9,13 @@
 @defaultFontSize: 1.0em;
 
 /* Default Layout Properties */
-@defaultContentWidth: 75%;
+@defaultContentWidth: 60%;
 
 /* Header */
 @headerTitleFontMagnitude: 1.5;
-@headerFontColor: lighten(@defaultBackground, 80%);
+@headerFontColor: @defaultBackground;
 @headerLinkFontColor: @headerFontColor;
+@headerBackgroundColor: #0A111A;
 
 /* Main Content */
 @contentMinHeight: 32.0em;
