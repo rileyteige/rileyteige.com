@@ -40,7 +40,7 @@ div#mainImageContainer {
 
 		@db: @defaultBackground;
 		@top: rgba(red(@db), green(@db), blue(@db), 0);
-		@mid: rgba(red(@db), green(@db), blue(@db), 0.1);
+		@mid: rgba(red(@db), green(@db), blue(@db), 0.05);
 		@bot: rgba(red(@db), green(@db), blue(@db), 1);
 
 		/*background: -moz-linear-gradient(top, @top 0%, @bot 100%);
@@ -50,9 +50,9 @@ div#mainImageContainer {
 		background: -ms-linear-gradient(top, @top 0%, @bot 100%);
 		background: linear-gradient(to bottom, @top 0%, @bot 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='@defaultBackground',GradientType=0 );*/
-		background: -moz-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
-		background: -webkit-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
-		background: -ms-linear-gradient(top, @top 0%, @mid 50%, @bot 100%);
+		background: -moz-linear-gradient(top, @top 0%, @mid 60%, @bot 100%);
+		background: -webkit-linear-gradient(top, @top 0%, @mid 60%, @bot 100%);
+		background: -ms-linear-gradient(top, @top 0%, @mid 60%, @bot 100%);
 	}
 }
 
