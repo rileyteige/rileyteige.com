@@ -1,0 +1,10 @@
+{{ Css('blog.css') }}
+
+<div class="blog">
+	<h1 class="blogTitle">{{ Model.Title }}</h1><span class="publishInfo">Published by {{ Model.Author }} on {{ Model.PublishDate }}.</span>
+	<section id="blogContent">
+		{{ Model.Content }}
+	</section>
+</div>
+
+{{ Script('blog.js') }}

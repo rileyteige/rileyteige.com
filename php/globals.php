@@ -4,8 +4,10 @@ define('BLOG', 'blog');
 
 define('MAIN_IMAGE_URL', 'main_image_url');
 
+define('PAGE_HEADER_TITLE', 'PageHeaderTitle');
+
 $config = [
-	MAIN_IMAGE_URL => 'http://wallike.com/wp-content/uploads/2013/07/Wooden-Chess-Pictures.jpg'
+	MAIN_IMAGE_URL => '/static/images/cessna.jpg'
 ];
 
 function get_global($key) {

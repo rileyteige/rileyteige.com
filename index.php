@@ -10,10 +10,15 @@ $app->get('/', function() {
 	echo $page;
 });
 
-$app->get('/blog/:blogId', function($blogId) {
-	$blog = load_blog_post($blogId);
-	
-	$page = load_templated_page('blog.html');
+$app->get('/blog/:blogSeoTitle(/)', function($blogSeoTitle) {
+	$blog = load_blog_post($blogSeoTitle);
+	if ($blog == null) {
+		header('This is not the page you are looking for', true, 404);
+		echo "Page not found.";
+		exit();
+	}
+
+	$page = load_templated_page('blog_entry.html');
 	
 	if ($blog != null) {
 		$page = templates\apply_model($blog, $page);
@@ -22,7 +27,22 @@ $app->get('/blog/:blogId', function($blogId) {
 	echo $page;
 });
 
-$app->get('/:page', function($page) {
+$app->get('/blog(/)', function () {
+	$blogs = load_recent_blogs(10);
+
+	$blog_html = '';
+	foreach ($blogs as $blog) {
+		$blogTitle = $blog->title;
+		$blogSeoLink = $blog->seoTitle;
+		$blogPublished = $blog->publishDate;
+
+		$blog_html .= "<a href=\"/blog/$blogSeoLink\">$blogTitle</a> &mdash; $blogPublished<br/>";
+	}
+
+	echo str_replace('{{BLOGS}}', $blog_html, load_templated_page('blog.html'));
+});
+
+$app->get('/:page(/)', function($page) {
 	if (strpos($page, '.html') == FALSE) {
 		$page = "$page.html";
 	}
@@ -50,20 +70,33 @@ $app->post('/blog/:blogId/comments', function($blogId) {
 $app->post('/blog', function() {
 	$body = http_get_request_body();
 	if ($body != null) {
+		var_dump($body);
 		$root = json_decode($body);
-		switch($root->type) {
-		
-			/* CREATE A BLOG */
-			case BLOG: {
-				$inBlog = $root->content;
-				if ($inBlog != null) {
-					$blogId = create_blog_post($inBlog->title, $inBlog->author, $inBlog->publishDate, $inBlog->imageUrl, $inBlog->contentPath);
-					if ($blogId > 0) {
-						echo "Success! New id is $blogId";
+		var_dump($root);
+		if ($root != null) {
+			switch($root->type) {
+			
+				/* CREATE A BLOG */
+				case BLOG: {
+					$inBlog = $root->content;
+					if ($inBlog != null) {
+						$blogId = create_blog_post(
+							$inBlog->title,
+							$inBlog->author,
+							$inBlog->publishDate,
+							$inBlog->heroImageUrl,
+							$inBlog->seoTitle,
+							$inBlog->contentPath);
+
+						if ($blogId > 0) {
+							echo "Success! New id is $blogId";
+						}
 					}
-				}
-			} break;
-		
+				} break;
+			
+			}
+		} else {
+			echo json_last_error();
 		}
 	}
 });

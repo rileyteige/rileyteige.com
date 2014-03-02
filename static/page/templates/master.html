@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Main Template</title>
+		<title>Riley Teige | {{ PageHeaderTitle }}</title>
 		
 		{{ Css('style.css') }}
 
@@ -14,9 +14,8 @@
 		<header id="header">
 			<nav>
 				<ul>
-					<li>{{ LinkLocalPage('/index.html', 'Home') }}</li>
-					<li>{{ LinkLocalPage('/resume.html', 'Developer') }}</li>
-					<li>{{ LinkLocalPage('/bloglist.html', 'Blog') }}</li>
+					<li>{{ LinkLocalPage('/index', 'About Me') }}</li>
+					<li>{{ LinkLocalPage('/blog', 'Blog') }}</li>
 				</ul>
 			</nav>
 		</header>

@@ -18,7 +18,7 @@ $helpers = [
 	}
 ];
 
-function register_helpers() {
+function register_html_helpers() {
 	global $helpers;
 	
 	foreach ($helpers as $name => $fn) {

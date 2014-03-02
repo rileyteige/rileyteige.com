@@ -226,3 +226,4 @@ pip-log.txt
 
 *.db
 */sqlcreds.php
+/static/images/*

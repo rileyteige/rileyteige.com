@@ -7,7 +7,7 @@ require_once 'templates/templates/setup.php';
 
 require_once 'globals.php';
 require_once 'blog.php';
-require_once 'helpers.php';
+require_once 'html_helpers.php';
 require_once 'sqlcreds.php';
 require_once 'resources.php';
 
@@ -15,7 +15,7 @@ require_once 'resources.php';
 
 R::setup('sqlite:rileyteige.db', SQL_DB_USER, SQL_DB_PASS);
 
-register_helpers();
+register_html_helpers();
 register_resources();
 
 function load_templated_page($page, $master = 'master.html') {
