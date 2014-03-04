@@ -1,6 +1,6 @@
-[submodule "php/templates"]
-	path = php/templates
+[submodule "php/lib/templates"]
+	path = php/lib/templates
 	url = git://github.com/rileyteige/templates.git
-[submodule "php/markdown"]
-	path = php/markdown
+[submodule "php/lib/markdown"]
+	path = php/lib/markdown
 	url = https://github.com/michelf/php-markdown.git
