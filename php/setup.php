@@ -1,6 +1,6 @@
 <?php
 
-require_once 'lib/markdown/Michelf/Markdown.php';
+require_once 'lib/markdown/Michelf/Markdown.inc.php';
 require_once 'lib/redbean/rb.php';
 require_once 'lib/templates/templates/setup.php';
 
