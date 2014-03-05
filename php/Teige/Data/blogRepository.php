@@ -4,10 +4,6 @@ namespace Teige\Data;
 
 require_once '/php/lib/redbean/rb.php';
 
-require_once '/php/Teige/Models/blogPost.php';
-
-use Teige\Models;
-
 class BlogRepository
 {
 	const BLOG = 'blog';
@@ -27,14 +23,7 @@ class BlogRepository
 	}
 
 	public function loadBlogPost($blogSeoTitle) {
-		$raw = \R::findOne(BLOG, ' seoTitle = ? ', [ $blogSeoTitle ]);
-		return new Models\MarkdownPost(
-			$raw->title,
-			$raw->author,
-			$raw->publishDate,
-			$raw->heroImageUrl,
-			$raw->seoTitle,
-			$raw->contentPath);
+		return \R::findOne(BLOG, ' seoTitle = ? ', [ $blogSeoTitle ]);
 	}
 
 	public function loadRecentBlogs($numBlogs) {

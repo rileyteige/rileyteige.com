@@ -5,8 +5,10 @@ namespace Teige;
 require_once '/php/lib/redbean/rb.php';
 
 require_once 'Data/blogRepository.php';
+require_once 'Models/markdownPost.php';
 
 use Teige\Data;
+use Teige\Models;
 
 class BlogProvider {
 	function __construct($blogRepository) {
@@ -28,10 +30,18 @@ class BlogProvider {
 	}
 
 	public function loadBlogPost($blogSeoTitle) {
-		$blog = $this->repo->loadBlogPost($blogSeoTitle);
-		if ($blog == null) {
+		$rawPost = $this->repo->loadBlogPost($blogSeoTitle);
+		if ($rawPost == null) {
 			return null;
 		}
+
+		$blog = new Models\MarkdownPost(
+			$rawPost->title,
+			$rawPost->author,
+			$rawPost->publishDate,
+			$rawPost->heroImageUrl,
+			$rawPost->seoTitle,
+			$rawPost->contentPath);
 
 		Application::current()->templateManager->setHeroImage($blog->heroImageUrl);
 
