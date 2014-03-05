@@ -225,5 +225,5 @@ pip-log.txt
 #############
 
 *.db
-*/sqlcreds.php
+sqlcreds.php
 /static/images/*
