@@ -1,5 +1,7 @@
 <?php
 
+namespace Teige;
+
 $helpers = [
 	'LinkLocalPage' => function($doc, $text) {
 		return "<a href=\"$doc\">$text</a>";

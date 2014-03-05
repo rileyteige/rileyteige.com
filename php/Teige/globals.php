@@ -1,5 +1,7 @@
 <?php
 
+namespace Teige;
+
 define('BLOG', 'blog');
 
 define('MAIN_IMAGE_URL', 'main_image_url');

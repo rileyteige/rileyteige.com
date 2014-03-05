@@ -1,5 +1,7 @@
 <?php
 
+namespace Teige;
+
 use \Michelf\Markdown;
 
 function load_markdown_file($filename) {

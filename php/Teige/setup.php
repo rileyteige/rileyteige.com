@@ -1,19 +1,16 @@
 <?php
 
-require_once 'lib/markdown/Michelf/Markdown.inc.php';
-require_once 'lib/redbean/rb.php';
-require_once 'lib/templates/templates/setup.php';
+namespace Teige;
+
+require_once '/php/lib/markdown/Michelf/Markdown.inc.php';
+require_once '/php/lib/redbean/rb.php';
+require_once '/php/lib/templates/templates/setup.php';
 
 require_once 'globals.php';
 require_once 'blog.php';
 require_once 'html_helpers.php';
 require_once 'sqlcreds.php';
 require_once 'resources.php';
-
-R::setup('sqlite:rileyteige.db', SQL_DB_USER, SQL_DB_PASS);
-
-register_html_helpers();
-register_resources();
 
 function load_templated_page($page, $master = 'master.html') {
 	return \templates\load_templated_page($page, $master);

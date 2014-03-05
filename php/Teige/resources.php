@@ -1,5 +1,7 @@
 <?php
 
+namespace Teige;
+
 $resources = [
 	'HelloWorld' => 'Hello, world!',
 	PAGE_HEADER_TITLE => 'Software Engineer, Student Pilot',

@@ -1,13 +1,22 @@
 <?php
 
-require_once 'lib/Slim/Slim/Slim.php';
+namespace Teige;
+
+require_once '/php/lib/Slim/Slim/Slim.php';
 
 function endsWith($haystack, $needle)
 {
     return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 }
 
-class Router
+interface IRouter
+{
+	public function get($route, $routeHandler);
+	public function post($route, $routeHandler);
+	public function processRoute();
+}
+
+class Router implements IRouter
 {
 	function __construct() {
 		$this->slimRouter = new \Slim\Slim();
