@@ -2,31 +2,53 @@
 
 namespace Teige;
 
-require_once '/php/lib/markdown/Michelf/Markdown.inc.php';
 require_once '/php/lib/redbean/rb.php';
 
 require_once 'blog.php';
 require_once 'globals.php';
-require_once 'html_helpers.php';
 require_once 'sqlcreds.php';
-require_once 'resources.php';
+require_once 'resourceManager.php';
 require_once 'router.php';
+require_once 'templateMethodManager.php';
 require_once 'Util/httpHelper.php';
 require_once 'Util/pageTemplateHelper.php';
 
 use Teige\Util;
+
+$currentApplication = null;
 
 /*
  * Defines the site application.
  */
 class Application
 {
+	function __construct() {
+		global $currentApplication;
+
+		if ($currentApplication != null) {
+			throw new Exception("Application can only be initialized once.");
+		}
+
+		$currentApplication = $this;
+	}
+
+	/*
+	 * Returns the current application.
+	 */
+	public static function current() {
+		global $currentApplication;
+		return $currentApplication;
+	}
+
 	/*
 	 * Starting point for the application.
 	 */
 	public function start() {
-		register_html_helpers();
-		register_resources();
+		$this->resourceManager = new ResourceManager();
+		$this->templateManager = new TemplateManager();
+
+		$this->templateManager->registerHelperMethods();
+		$this->resourceManager->register();
 
 		$router = $this->buildRouteHandlers(new Router());
 

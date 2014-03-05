@@ -2,6 +2,9 @@
 
 namespace Teige;
 
+require_once '/php/lib/markdown/Michelf/Markdown.inc.php';
+require_once '/php/lib/redbean/rb.php';
+
 use \Michelf\Markdown;
 
 function load_markdown_file($filename) {
@@ -45,7 +48,7 @@ function load_blog_post($blogSeoTitle) {
 	
 	$blog->content = load_markdown_file(BLOG_ENTRY_ROOT.'/'.$blog->contentPath);
 	
-	set_global(MAIN_IMAGE_URL, $blog->heroImageUrl);
+	Application::current()->templateManager->setHeroImage($blog->heroImageUrl);
 
 	return $blog;
 }

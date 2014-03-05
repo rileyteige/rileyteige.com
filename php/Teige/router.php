@@ -4,19 +4,16 @@ namespace Teige;
 
 require_once '/php/lib/Slim/Slim/Slim.php';
 
+require_once 'Interfaces/iRouter.php';
+
+use Teige\Interfaces;
+
 function endsWith($haystack, $needle)
 {
     return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 }
 
-interface IRouter
-{
-	public function get($route, $routeHandler);
-	public function post($route, $routeHandler);
-	public function processRoute();
-}
-
-class Router implements IRouter
+class Router implements Interfaces\IRouter
 {
 	function __construct() {
 		$this->slimRouter = new \Slim\Slim();
