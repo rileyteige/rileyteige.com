@@ -2,6 +2,8 @@
 
 namespace Teige;
 
+require_once '/php/lib/templates/templates/setup.php';
+
 $helpers = [
 	'LinkLocalPage' => function($doc, $text) {
 		return "<a href=\"$doc\">$text</a>";

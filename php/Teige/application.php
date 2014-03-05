@@ -2,11 +2,28 @@
 
 namespace Teige;
 
-require_once 'setup.php';
-require_once 'router.php';
+require_once '/php/lib/markdown/Michelf/Markdown.inc.php';
+require_once '/php/lib/redbean/rb.php';
 
+require_once 'blog.php';
+require_once 'globals.php';
+require_once 'html_helpers.php';
+require_once 'sqlcreds.php';
+require_once 'resources.php';
+require_once 'router.php';
+require_once 'Util/httpHelper.php';
+require_once 'Util/pageTemplateHelper.php';
+
+use Teige\Util;
+
+/*
+ * Defines the site application.
+ */
 class Application
 {
+	/*
+	 * Starting point for the application.
+	 */
 	public function start() {
 		register_html_helpers();
 		register_resources();
@@ -18,9 +35,12 @@ class Application
 		}
 	}
 
+	/*
+	 * Builds route handlers into a site router.
+	 */
 	private function buildRouteHandlers($router) {
 		$router->get('/', function() {
-			$page = load_templated_page('index.html');
+			$page = Util\PageTemplateHelper::loadPageTemplate('index.html');
 
 			echo $page;
 		});
@@ -68,7 +88,7 @@ class Application
 		});
 
 		$router->post('/blog/:blogId/comments', function($blogId) {
-			$body = http_get_request_body();
+			$body = Util\HttpHelper::getRequestBody();
 			if ($body == null) {
 				echo json_encode(array("error" => "Bad HTTP Request body"));
 				return;
@@ -83,7 +103,7 @@ class Application
 		});
 
 		$router->post('/blog', function() {
-			$body = http_get_request_body();
+			$body = Util\HttpHelper::getRequestBody();
 			if ($body != null) {
 				var_dump($body);
 				$root = json_decode($body);
@@ -119,8 +139,15 @@ class Application
 		return $router;
 	}
 
+	/*
+	 * Initializes any external libraries that might need
+	 * to be initialized.
+	 */
 	private function initializeExternalLibraries() {
-		\R::setup('sqlite:rileyteige.db', SQL_DB_USER, SQL_DB_PASS);
+		$credentials = new DatabaseCredentials();
+		\R::setup('sqlite:'.$credentials->databaseName(), 
+					$credentials->username(), 
+					$credentials->password());
 	}
 }
 
