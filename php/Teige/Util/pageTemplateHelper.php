@@ -15,6 +15,10 @@ class PageTemplateHelper
 	public static function loadPageTemplate($page, $master = 'master.html') {
 		return \templates\load_templated_page($page, $master);
 	}
+
+	public static function applyModel($model, $pageTemplate) {
+		return \templates\apply_model($model, $pageTemplate);
+	}
 }
 
 ?>

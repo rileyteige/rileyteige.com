@@ -4,15 +4,18 @@ namespace Teige;
 
 require_once '/php/lib/redbean/rb.php';
 
-require_once 'blog.php';
+require_once 'blogProvider.php';
 require_once 'globals.php';
 require_once 'sqlcreds.php';
 require_once 'resourceManager.php';
 require_once 'router.php';
-require_once 'templateMethodManager.php';
+require_once 'templateManager.php';
+
+require_once 'Data/blogRepository.php';
 require_once 'Util/httpHelper.php';
 require_once 'Util/pageTemplateHelper.php';
 
+use Teige\Data;
 use Teige\Util;
 
 $currentApplication = null;
@@ -52,6 +55,8 @@ class Application
 
 		$router = $this->buildRouteHandlers(new Router());
 
+		$this->initializeExternalLibraries();
+
 		if ($router != null) {
 			$router->processRoute();
 		}
@@ -68,24 +73,26 @@ class Application
 		});
 
 		$router->get('/blog/:blogSeoTitle(/)', function($blogSeoTitle) {
-			$blog = load_blog_post($blogSeoTitle);
+			$blogProvider = new BlogProvider(new Data\BlogRepository());
+			$blog = $blogProvider->loadBlogPost($blogSeoTitle);
 			if ($blog == null) {
 				header('This is not the page you are looking for', true, 404);
 				echo "Page not found.";
 				exit();
 			}
 
-			$page = load_templated_page('blog_entry.html');
+			$page = Util\PageTemplateHelper::loadPageTemplate('blog_entry.html');
 			
 			if ($blog != null) {
-				$page = templates\apply_model($blog, $page);
+				$page = Util\PageTemplateHelper::applyModel($blog, $page);
 			}
 			
 			echo $page;
 		});
 
 		$router->get('/blog(/)', function () {
-			$blogs = load_recent_blogs(10);
+			$blogProvider = new BlogProvider(new Data\BlogRepository());
+			$blogs = $blogProvider->loadRecentBlogs(10);
 
 			$blog_html = '';
 			foreach ($blogs as $blog) {
@@ -96,7 +103,7 @@ class Application
 				$blog_html .= "<a href=\"/blog/$blogSeoLink\">$blogTitle</a> &mdash; $blogPublished<br/>";
 			}
 
-			echo str_replace('{{BLOGS}}', $blog_html, load_templated_page('blog.html'));
+			echo str_replace('{{BLOGS}}', $blog_html, Util\PageTemplateHelper::loadPageTemplate('blog.html'));
 		});
 
 		$router->get('/:page(/)', function($page) {
@@ -137,7 +144,8 @@ class Application
 						case BLOG: {
 							$inBlog = $root->content;
 							if ($inBlog != null) {
-								$blogId = create_blog_post(
+								$blogProvider = new BlogProvider(new Data\BlogRepository());
+								$blogId = $blogProvider->createBlogPost(
 									$inBlog->title,
 									$inBlog->author,
 									$inBlog->publishDate,

@@ -31,13 +31,13 @@ class TemplateManager
 		$this->heroImage = Application::current()->resourceManager->getResource(MAIN_IMAGE_URL);
 	}
 
-	function registerHelperMethods() {
+	public function registerHelperMethods() {
 		foreach ($this->helperMethods as $name => $fn) {
 			\templates\register_helper($name, $fn);
 		}
 	}
 
-	function setHeroImage($imageUrl) {
+	public function setHeroImage($imageUrl) {
 		$this->heroImage = $imageUrl;
 	}
 }
