@@ -5,7 +5,6 @@ namespace Teige;
 require_once '/php/lib/redbean/rb.php';
 
 require_once 'blogProvider.php';
-require_once 'globals.php';
 require_once 'sqlcreds.php';
 require_once 'resourceManager.php';
 require_once 'router.php';

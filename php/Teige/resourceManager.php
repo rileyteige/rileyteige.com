@@ -2,10 +2,12 @@
 
 namespace Teige;
 
+require_once 'constants.php';
+
 $defaultResources = [
 	'HelloWorld' => 'Hello, world!',
-	PAGE_HEADER_TITLE => 'Software Engineer, Student Pilot',
-	MAIN_IMAGE_URL => '/static/images/cessna.jpg'
+	Constants::PageHeaderTitle => 'Software Engineer, Student Pilot',
+	Constants::MainImageUrl => '/static/images/cessna.jpg'
 ];
 
 class ResourceManager
@@ -14,6 +16,10 @@ class ResourceManager
 		global $defaultResources;
 
 		$this->resources = array_merge($defaultResources, $resources);
+	}
+
+	public static function current() {
+		return Application::current()->resourceManager;
 	}
 
 	public function register() {

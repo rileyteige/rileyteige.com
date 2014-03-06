@@ -6,10 +6,10 @@ require_once '/php/lib/redbean/rb.php';
 
 class BlogRepository
 {
-	const BLOG = 'blog';
+	const BlogTable = 'blog';
 
 	public function createBlogPost($title, $author, $publishDate, $imgUrl, $seoTitle, $contentPath) {
-		$post = \R::dispense(BLOG);
+		$post = \R::dispense(BlogRepository::BlogTable);
 		$post->title = $title;
 		$post->author = $author;
 		$post->publishDate = $publishDate;
@@ -23,12 +23,12 @@ class BlogRepository
 	}
 
 	public function loadBlogPost($blogSeoTitle) {
-		return \R::findOne(BLOG, ' seoTitle = ? ', [ $blogSeoTitle ]);
+		return \R::findOne(BlogRepository::BlogTable, ' seoTitle = ? ', [ $blogSeoTitle ]);
 	}
 
 	public function loadRecentBlogs($numBlogs) {
-		$blogRows = \R::getAll('SELECT * FROM '.BLOG.' LIMIT ?', [$numBlogs]);
-		$blogs = \R::convertToBeans(BLOG, $blogRows);
+		$blogRows = \R::getAll('SELECT * FROM '.BlogRepository::BlogTable.' LIMIT ?', [$numBlogs]);
+		$blogs = \R::convertToBeans(BlogRepository::BlogTable, $blogRows);
 		return $blogs;
 	}
 }

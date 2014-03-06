@@ -10,6 +10,9 @@ require_once 'Models/markdownPost.php';
 use Teige\Data;
 use Teige\Models;
 
+/*
+ * Provides blog data and business logic.
+ */
 class BlogProvider {
 	function __construct($blogRepository) {
 		if ($blogRepository == null) {
@@ -19,6 +22,9 @@ class BlogProvider {
 		$this->repo = $blogRepository;
 	}
 
+	/*
+	 * Creates a blog post given the necessary metadata.
+	 */
 	public function createBlogPost($title, $author, $publishDate, $imgUrl, $seoTitle, $contentPath) {
 		return $this->repo->createBlogPost(
 			$title,
@@ -29,6 +35,10 @@ class BlogProvider {
 			$contentPath);
 	}
 
+	/*
+	 * Loads a blog post from the database, given its
+	 * SEO title.
+	 */
 	public function loadBlogPost($blogSeoTitle) {
 		$rawPost = $this->repo->loadBlogPost($blogSeoTitle);
 		if ($rawPost == null) {
@@ -48,6 +58,10 @@ class BlogProvider {
 		return $blog;
 	}
 
+	/*
+	 * Loads the most recent blog posts, given the number
+	 * of posts to load.
+	 */
 	public function loadRecentBlogs($numBlogs) {
 		return $this->repo->loadRecentBlogs($numBlogs);
 	}

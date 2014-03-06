@@ -4,6 +4,8 @@ namespace Teige;
 
 require_once '/php/lib/templates/templates/setup.php';
 
+require_once 'constants.php';
+
 $defaultHelpers = [
 	'LinkLocalPage' => function($doc, $text) {
 		return "<a href=\"$doc\">$text</a>";
@@ -18,7 +20,7 @@ $defaultHelpers = [
 	},
 
 	'MainImageUrl' => function() {
-		return Application::current()->templateManager->heroImage;
+		return TemplateManager::current()->heroImage;
 	}
 ];
 
@@ -28,7 +30,11 @@ class TemplateManager
 		global $defaultHelpers;
 
 		$this->helperMethods = array_merge($defaultHelpers, $helperMethods);
-		$this->heroImage = Application::current()->resourceManager->getResource(MAIN_IMAGE_URL);
+		$this->heroImage = ResourceManager::current()->getResource(Constants::MainImageUrl);
+	}
+
+	public static function current() {
+		return Application::current()->templateManager;
 	}
 
 	public function registerHelperMethods() {
